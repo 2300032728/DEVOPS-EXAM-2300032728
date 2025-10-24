@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+//import Config from "./config";
 import {
   Button,
   Card,
@@ -19,7 +20,7 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function VoterApp() {
-  const baseUrl = `http://localhost:2000`;
+  const baseUrl = `http://localhost:2030/2300032728-backend`;
   const [voter, setVoter] = useState({
     id: "",
     name: "",
@@ -35,7 +36,7 @@ export default function VoterApp() {
   useEffect(() => {
     const fetchAllVoters = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/all`);
+        const res = await axios.get(`${Config.baseUrl}/all`);
         setAllVoters(res.data);
       } catch (err) {
         console.error("Error fetching all voters", err);
@@ -70,11 +71,11 @@ export default function VoterApp() {
     }
 
     try {
-      const res = await axios.post(`${baseUrl}/add`, voter);
+      const res = await axios.post(`${Config.baseUrl}/add`, voter);
       alert(res.data);
 
       // Refresh voter list
-      const allRes = await axios.get(`${baseUrl}/all`);
+      const allRes = await axios.get(`${Config.baseUrl}/all`);
       setAllVoters(allRes.data);
 
       setVoter({ id: "", name: "", age: "", number: "", gender: "" });
@@ -92,7 +93,7 @@ export default function VoterApp() {
       return;
     }
     try {
-      const res = await axios.get(`${baseUrl}/get/${id}`);
+      const res = await axios.get(`${Config.baseUrl}/get/${id}`);
       setVoterData(res.data);
       alert("Voter Found");
       setId("");
