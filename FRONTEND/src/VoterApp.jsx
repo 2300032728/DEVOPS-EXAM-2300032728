@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
 import {
   Button,
   Card,
@@ -36,7 +35,7 @@ export default function VoterApp() {
   useEffect(() => {
     const fetchAllVoters = async () => {
       try {
-        const res = await axios.get(`${Config.baseUrl}/all`);
+        const res = await axios.get(`${baseUrl}/all`);
         setAllVoters(res.data);
       } catch (err) {
         console.error("Error fetching all voters", err);
@@ -71,11 +70,11 @@ export default function VoterApp() {
     }
 
     try {
-      const res = await axios.post(`${Config.baseUrl}/add`, voter);
+      const res = await axios.post(`${baseUrl}/add`, voter);
       alert(res.data);
 
       // Refresh voter list
-      const allRes = await axios.get(`${Config.baseUrl}/all`);
+      const allRes = await axios.get(`${baseUrl}/all`);
       setAllVoters(allRes.data);
 
       setVoter({ id: "", name: "", age: "", number: "", gender: "" });
@@ -93,7 +92,7 @@ export default function VoterApp() {
       return;
     }
     try {
-      const res = await axios.get(`${Config.baseUrl}/get/${id}`);
+      const res = await axios.get(`${baseUrl}/get/${id}`);
       setVoterData(res.data);
       alert("Voter Found");
       setId("");
