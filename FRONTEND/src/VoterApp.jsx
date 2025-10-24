@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-//import Config from "./config";
+//import Config from "./Config";
 import {
   Button,
   Card,
